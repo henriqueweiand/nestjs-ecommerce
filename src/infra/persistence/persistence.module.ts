@@ -6,6 +6,8 @@ import { PrismaService } from './prisma/prisma.service';
 import { PrismaProductRepository } from './prisma/repositories/prisma-product.repositoy';
 import { UserRepository } from '@app/application/ecommerce/ports/user.repositoy';
 import { PrismaUserRepository } from './prisma/repositories/prisma-user.repositoy';
+import { OrderRepository } from '@app/application/ecommerce/ports/order.repositoy';
+import { PrismaOrderRepository } from './prisma/repositories/prisma-order.repositoy';
 
 @Module({
     providers: [
@@ -17,8 +19,11 @@ import { PrismaUserRepository } from './prisma/repositories/prisma-user.reposito
         {
             provide: UserRepository,
             useClass: PrismaUserRepository
+        }, {
+            provide: OrderRepository,
+            useClass: PrismaOrderRepository
         },
     ],
-    exports: [PrismaService, ProductRepository, UserRepository],
+    exports: [PrismaService, ProductRepository, UserRepository, OrderRepository],
 })
 export class PersistenceModule { }
