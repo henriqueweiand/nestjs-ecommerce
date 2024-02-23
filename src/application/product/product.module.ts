@@ -2,10 +2,11 @@ import { ProductController } from '@app/infra/http/product.controller';
 import { PersistenceModule } from '@app/infra/persistence/persistence.module';
 import { Module } from '@nestjs/common';
 import { CreateProductUseCase } from './use-case/create-product';
+import { GetProductUseCase } from './use-case/get-product';
 
 @Module({
     imports: [PersistenceModule],
     controllers: [ProductController],
-    providers: [CreateProductUseCase],
+    providers: [CreateProductUseCase, GetProductUseCase],
 })
 export class ProductModule { }

@@ -6,16 +6,19 @@ import {
     Post
 } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
+import { GetProductUseCase } from '@app/application/product/use-case/get-product';
 
 @Controller('/product')
 export class ProductController {
     constructor(
-        private createProductUseCase: CreateProductUseCase
+        private createProductUseCase: CreateProductUseCase,
+        private getProductUseCase: GetProductUseCase
     ) { }
 
     @Get('')
     getAll() {
-        return 'ok';
+        const response = this.getProductUseCase.execute({});
+        return response;
     }
 
     @Post('create')

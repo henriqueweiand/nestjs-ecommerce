@@ -14,9 +14,9 @@ export class CreateProductUseCase {
     title,
   }: CreateProductUseCaseCommand): Promise<any> {
 
-    const product = new Product(
+    const product = new Product({
       title,
-    )
+    })
 
     const response = await this.productRepository.create(product)
 

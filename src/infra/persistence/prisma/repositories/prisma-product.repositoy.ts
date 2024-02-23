@@ -1,8 +1,8 @@
 import { ProductRepository } from "@app/application/product/ports/product.repositoy";
 import { Product } from "@app/domain/product/product";
+import { Injectable } from "@nestjs/common";
 import { PrismaProductMapper } from "../mapper/prisma-product-mapper";
 import { PrismaService } from "../prisma.service";
-import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class PrismaProductRepository implements ProductRepository {
@@ -14,9 +14,8 @@ export class PrismaProductRepository implements ProductRepository {
         return products.map((item) => PrismaProductMapper.toDomain(item));
     }
 
-    async create(product2: Product): Promise<Product> {
-        const data = PrismaProductMapper.toPrisma(product2);
-
+    async create(product: Product): Promise<Product> {
+        const data = PrismaProductMapper.toPrisma(product);
         const entity = await this.prisma.product.create({ data });
 
         return PrismaProductMapper.toDomain(entity);
