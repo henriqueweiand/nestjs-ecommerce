@@ -1,10 +1,15 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { DevtoolsModule } from '@nestjs/devtools-integration';
+import { ProductModule } from './application/product/product.module';
+import { EnvModule } from './infra/env';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    DevtoolsModule.register({
+      http: process.env.NODE_ENV !== 'production',
+    }),
+    EnvModule,
+    ProductModule,
+  ],
 })
-export class AppModule {}
+export class AppModule { }

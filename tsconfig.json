@@ -6,7 +6,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "ES2021",
+    "target": "es2022",
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
@@ -16,6 +16,26 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@app/application": [
+        "src/application"
+      ],
+      "@app/application/*": [
+        "src/application/*"
+      ],
+      "@app/domain": [
+        "src/domain"
+      ],
+      "@app/domain/*": [
+        "src/domain/*"
+      ],
+      "@app/infra": [
+        "src/infra"
+      ],
+      "@app/infra/*": [
+        "src/infra/*"
+      ]
+    }
   }
 }
