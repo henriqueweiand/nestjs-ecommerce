@@ -1,12 +1,16 @@
 import { Order } from '@app/domain/ecommerce/order'
-import { Prisma, Order as PrismaOrder } from '@prisma/client'
+import { OrderProduct, Prisma, Order as PrismaOrder } from '@prisma/client'
+import { PrismaOrderProductMapper } from './prisma-order-product-mapper';
+
+type OrderWithOrderProduct = PrismaOrder & { OrderProduct?: OrderProduct[] };
 
 export class PrismaOrderMapper {
-  static toDomain(entity: PrismaOrder): Order {
+  static toDomain(entity: OrderWithOrderProduct): Order {
     const model = new Order({
       id: entity.id,
       userId: entity.userId,
       total: entity.total,
+      orderProduct: entity.OrderProduct.map((item) => PrismaOrderProductMapper.toDomain(item))
     });
     return model;
   }

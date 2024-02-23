@@ -1,10 +1,12 @@
 import { Order } from '@app/domain/ecommerce/order';
 import { Injectable } from '@nestjs/common';
 import { OrderRepository } from '../ports/order.repositoy';
+import { OrderProduct } from '@app/domain/ecommerce/order-product';
 
 interface CreateOrderUseCaseCommand {
   userId: string,
   total: number,
+  orderProduct: OrderProduct[]
 }
 
 @Injectable()
@@ -14,11 +16,13 @@ export class CreateOrderUseCase {
   async execute({
     userId,
     total,
-  }: CreateOrderUseCaseCommand): Promise<any> {
+    orderProduct
+  }: CreateOrderUseCaseCommand): Promise<Order> {
 
     const order = new Order({
       userId,
       total,
+      orderProduct
     })
 
     const response = await this.orderRepository.create(order)
