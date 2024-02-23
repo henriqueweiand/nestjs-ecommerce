@@ -12,11 +12,13 @@ export class PrismaOrderProductMapper {
     return model;
   }
 
-  static toPrisma(order: OrderProduct): Prisma.OrderProductUncheckedCreateInput {
-    return {
-      productId: order.productId,
-      orderId: order.orderId,
-      price: order.price,
-    }
+  static toPrismaCreateMany(
+    orderProducts: OrderProduct[],
+  ): Prisma.OrderProductCreateManyInput[] {
+    return orderProducts.map((product) => ({
+      productId: product.productId,
+      orderId: product.orderId,
+      price: product.price,
+    }));
   }
 }

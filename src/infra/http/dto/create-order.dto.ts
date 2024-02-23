@@ -8,18 +8,11 @@ import { CreateOrderProductDto } from './create-order-product.dto';
 
 export class CreateOrderDto {
     @ApiProperty({
-        default: '18d33ad3-5906-4c0c-9c49-3b1e60b6105e'
+        default: 'd39a0321-f308-4795-a37c-3ebd0f1bd2c4'
     })
     @IsString()
     @IsNotEmpty()
     userId: string;
-
-    @ApiProperty({
-        default: 30
-    })
-    @IsNumber()
-    @IsNotEmpty()
-    total: number;
 
     @ApiProperty({
         required: true,
@@ -27,12 +20,12 @@ export class CreateOrderDto {
         nullable: false,
         isArray: true,
         default: [{
-            "productId": "b4d0670c-4538-44f3-ab9f-d2f645e5fa58",
-            "price": 10
+            "productId": "3811d764-8deb-40af-979e-8c3fc2d656e5",
+            "price": 20
         },
         {
-            "productId": "10f4eb4f-653e-4306-b14e-422ad180a694",
-            "price": 20
+            "productId": "94ba5a1e-9d08-4d8e-b5e3-1d3b7787121f",
+            "price": 10
         }]
     })
     @IsNotEmpty()

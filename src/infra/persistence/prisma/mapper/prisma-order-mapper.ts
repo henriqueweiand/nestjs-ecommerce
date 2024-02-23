@@ -19,6 +19,7 @@ export class PrismaOrderMapper {
     return {
       userId: order.userId,
       total: order.total,
+      id: order.id,
     }
   }
 }
