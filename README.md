@@ -7,6 +7,7 @@ This is a simple example to exercise clean architecture
 - [x] Product
 - [x] User
 - [x] Order
-- [ ] Branch with MongoDB
+- [x] Branch with MongoDB and Prisma
+- [ ] Branch with MongoDB and TypeOrm
 - [ ] Cache layer
 - [ ] Tests
