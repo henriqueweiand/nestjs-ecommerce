@@ -14,8 +14,43 @@ datasource db {
 }
 
 model Product {
-  id    String @id @default(uuid())
-  title String
+  id                String         @id @default(uuid())
+  title             String
+  quantityAvailable Int            @default(0)
+  price             Int            @default(0)
+  OrderProduct      OrderProduct[]
 
   @@map("product")
+}
+
+model User {
+  id   String @id @default(uuid())
+  name String
+
+  orders Order[]
+
+  @@map("user")
+}
+
+model Order {
+  id     String @id @default(uuid())
+  userId String
+  total  Int
+
+  User         User?          @relation(fields: [userId], references: [id])
+  OrderProduct OrderProduct[]
+
+  @@map("order")
+}
+
+model OrderProduct {
+  id        String @id @default(uuid())
+  productId String
+  orderId   String @map("order_id")
+  price     Int
+
+  order   Order    @relation(fields: [orderId], references: [id])
+  Product Product? @relation(fields: [productId], references: [id])
+
+  @@map("order_product")
 }

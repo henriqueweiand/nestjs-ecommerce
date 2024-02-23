@@ -12,7 +12,10 @@ async function bootstrap() {
   const configService = app.get(EnvService)
   const port = configService.get('PORT')
 
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe({
+    transform: true,
+    whitelist: true,
+  }));
 
   const config = new DocumentBuilder()
     .setTitle('API')

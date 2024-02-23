@@ -1,4 +1,4 @@
-import { Product } from '@app/domain/product/product'
+import { Product } from '@app/domain/ecommerce/product'
 import { Prisma, Product as PrismaProduct } from '@prisma/client'
 
 export class PrismaProductMapper {
@@ -6,13 +6,17 @@ export class PrismaProductMapper {
     const model = new Product({
       id: entity.id,
       title: entity.title,
+      quantityAvailable: entity.quantityAvailable,
+      price: entity.price,
     });
     return model;
   }
 
   static toPrisma(product: Product): Prisma.ProductUncheckedCreateInput {
     return {
-      title: product.getTitle
+      title: product.title,
+      quantityAvailable: product.quantityAvailable,
+      price: product.price,
     }
   }
 }

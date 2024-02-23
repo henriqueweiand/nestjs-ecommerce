@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { DevtoolsModule } from '@nestjs/devtools-integration';
-import { ProductModule } from './application/product/product.module';
+import { ProductModule } from './application/ecommerce/product.module';
 import { EnvModule } from './infra/env';
 
 @Module({
