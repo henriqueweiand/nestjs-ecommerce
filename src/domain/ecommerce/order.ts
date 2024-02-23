@@ -3,7 +3,7 @@ import { OrderProduct } from "./order-product";
 import mongoose from "mongoose";
 
 export interface OrderProps {
-    id?: string
+    id?: mongoose.Types.ObjectId
     userId: string
     total: number
     orderProduct?: OrderProduct[]
@@ -18,7 +18,7 @@ export class Order extends Entity<OrderProps> {
         super(props);
     }
 
-    get id(): string {
+    get id(): mongoose.Types.ObjectId {
         return this.props.id;
     }
 
