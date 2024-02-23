@@ -1,9 +1,9 @@
+import { OrderProductRepository } from "@app/application/ecommerce/ports/order-product.repositoy";
 import { OrderRepository } from "@app/application/ecommerce/ports/order.repositoy";
 import { Order } from "@app/domain/ecommerce/order";
 import { Injectable } from "@nestjs/common";
 import { PrismaOrderMapper } from "../mapper/prisma-order-mapper";
 import { PrismaService } from "../prisma.service";
-import { OrderProductRepository } from "@app/application/ecommerce/ports/order-product.repositoy";
 
 @Injectable()
 export class PrismaOrderRepository implements OrderRepository {
@@ -32,8 +32,6 @@ export class PrismaOrderRepository implements OrderRepository {
         )
 
         order.OrderProduct = orderProduct;
-
-        // reduce amount of product in stock
 
         return PrismaOrderMapper.toDomain(order);
     }

@@ -1,14 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
     IsNotEmpty,
-    IsNumber,
     IsString
 } from 'class-validator';
 import { CreateOrderProductDto } from './create-order-product.dto';
 
 export class CreateOrderDto {
     @ApiProperty({
-        default: 'd39a0321-f308-4795-a37c-3ebd0f1bd2c4'
+        default: '2526fb63-5dc2-42ab-aece-cd2fa40be56a'
     })
     @IsString()
     @IsNotEmpty()
@@ -20,12 +19,12 @@ export class CreateOrderDto {
         nullable: false,
         isArray: true,
         default: [{
-            "productId": "3811d764-8deb-40af-979e-8c3fc2d656e5",
-            "price": 20
+            "productId": "fe047ad9-da72-4c49-8591-a110751a129c",
+            "price": 10
         },
         {
-            "productId": "94ba5a1e-9d08-4d8e-b5e3-1d3b7787121f",
-            "price": 10
+            "productId": "3329e67c-4711-4814-88c6-9d5c53ece72d",
+            "price": 20
         }]
     })
     @IsNotEmpty()

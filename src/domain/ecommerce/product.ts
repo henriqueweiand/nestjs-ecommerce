@@ -3,7 +3,6 @@ import { Entity } from "@app/core/entities/entity";
 export interface ProductProps {
     id?: string
     title: string
-    quantityAvailable: number
     price: number
 }
 
@@ -18,10 +17,6 @@ export class Product extends Entity<ProductProps> {
 
     get title(): string {
         return this.props.title;
-    }
-
-    get quantityAvailable(): number {
-        return this.props.quantityAvailable;
     }
 
     get price(): number {

@@ -35,7 +35,7 @@ export class CreateOrderUseCase {
         orderId: order.id,
         price: product.price,
       });
-    })
+    });
 
     order.total = total;
     order.orderProduct = createdOrderProduct;

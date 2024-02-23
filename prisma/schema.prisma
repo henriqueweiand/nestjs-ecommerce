@@ -14,11 +14,10 @@ datasource db {
 }
 
 model Product {
-  id                String         @id @default(uuid())
-  title             String
-  quantityAvailable Int            @default(0)
-  price             Int            @default(0)
-  OrderProduct      OrderProduct[]
+  id           String         @id @default(uuid())
+  title        String
+  price        Int            @default(0)
+  OrderProduct OrderProduct[]
 
   @@map("product")
 }
