@@ -1,6 +1,6 @@
 import { Entity } from "@app/core/entities/entity";
 import { OrderProduct } from "./order-product";
-import { randomUUID } from "crypto";
+import mongoose from "mongoose";
 
 export interface OrderProps {
     id?: string
@@ -11,7 +11,7 @@ export interface OrderProps {
 
 export class Order extends Entity<OrderProps> {
     constructor(props: OrderProps) {
-        props.id = props.id ?? randomUUID();
+        props.id = props.id ?? new mongoose.Types.ObjectId();
         props.total = props.total ?? 0;
         props.orderProduct = props.orderProduct ?? [];
 
