@@ -33,7 +33,7 @@ model User {
 }
 
 model Order {
-  id     String @id @default(uuid())
+  id     String @id
   userId String
   total  Int
 
@@ -46,7 +46,7 @@ model Order {
 model OrderProduct {
   id        String @id @default(uuid())
   productId String
-  orderId   String @map("order_id")
+  orderId   String @map("orderId")
   price     Int
 
   order   Order    @relation(fields: [orderId], references: [id])
