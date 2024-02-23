@@ -2,7 +2,7 @@ import { Product } from '@app/domain/product/product';
 import { Injectable } from '@nestjs/common';
 import { ProductRepository } from '../ports/product.repositoy';
 
-interface CreateProductUseCaseRequest {
+interface CreateProductUseCaseCommand {
   title: string
 }
 
@@ -12,7 +12,7 @@ export class CreateProductUseCase {
 
   async execute({
     title,
-  }: CreateProductUseCaseRequest): Promise<any> {
+  }: CreateProductUseCaseCommand): Promise<any> {
 
     const product = new Product(
       title,
