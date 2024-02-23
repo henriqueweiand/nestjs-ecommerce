@@ -9,12 +9,12 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "mongodb"
+  url      = env("MONGODB_URL")
 }
 
 model Product {
-  id           String         @id @default(uuid())
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
   title        String
   price        Int            @default(0)
   OrderProduct OrderProduct[]
@@ -23,7 +23,7 @@ model Product {
 }
 
 model User {
-  id   String @id @default(uuid())
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
   name String
 
   orders Order[]
@@ -32,8 +32,8 @@ model User {
 }
 
 model Order {
-  id     String @id
-  userId String
+  id     String @id @map("_id") @db.ObjectId
+  userId String @db.ObjectId
   total  Int
 
   User         User?          @relation(fields: [userId], references: [id])
@@ -43,9 +43,9 @@ model Order {
 }
 
 model OrderProduct {
-  id        String @id @default(uuid())
-  productId String
-  orderId   String @map("orderId")
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  productId String @db.ObjectId
+  orderId   String @map("orderId") @db.ObjectId
   price     Int
 
   order   Order    @relation(fields: [orderId], references: [id])
