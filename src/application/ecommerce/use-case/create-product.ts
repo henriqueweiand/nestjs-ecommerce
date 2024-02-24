@@ -14,13 +14,11 @@ export class CreateProductUseCase {
 
   async execute({
     title,
-    quantityAvailable,
     price
   }: CreateProductUseCaseCommand): Promise<any> {
 
     const product = new Product({
       title,
-      quantityAvailable,
       price
     })
 
