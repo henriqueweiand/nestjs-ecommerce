@@ -3,12 +3,10 @@ import { OrderRepository } from "@app/application/ecommerce/ports/order.reposito
 import { Order } from "@app/domain/ecommerce/order";
 import { Injectable } from "@nestjs/common";
 import { PrismaOrderMapper } from "../mapper/mongoose-order-mapper";
-import { PrismaService } from "../prisma.service";
 
 @Injectable()
 export class PrismaOrderRepository implements OrderRepository {
     constructor(
-        private prisma: PrismaService,
         private orderProductRepository: OrderProductRepository
     ) { }
 
