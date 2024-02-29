@@ -32,12 +32,12 @@ model User {
 }
 
 model Order {
-  id     String @id
-  userId String
-  total  Int
+  id    String @id @default(uuid())
+  user  String
+  total Int
 
-  User         User?          @relation(fields: [userId], references: [id])
-  OrderProduct OrderProduct[]
+  User         User           @relation(fields: [user], references: [id])
+  orderProduct OrderProduct[]
 
   @@map("order")
 }
@@ -49,7 +49,7 @@ model OrderProduct {
   price     Int
 
   order   Order    @relation(fields: [orderId], references: [id])
-  Product Product? @relation(fields: [productId], references: [id])
+  product Product? @relation(fields: [productId], references: [id])
 
   @@map("order_product")
 }

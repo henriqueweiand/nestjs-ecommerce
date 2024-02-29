@@ -1,6 +1,6 @@
 version: '3'
 services:
-  api-solid-pg:
+  postgres:
     image: bitnami/postgresql
     ports:
       - 5432:5432
@@ -9,10 +9,10 @@ services:
       - POSTGRESQL_PASSWORD=docker
       - POSTGRESQL_DATABASE=project
 
-  db:
-    image: mongo # container image to be used
+  mongo:
+    image: mongo
     restart: always
-    ports: # expose ports in “host:container” format
+    ports:
       - 27017:27017
-    environment: #env variables to pass into the container
-      MONGODB_DATABASE: nest-course
+    environment:
+      MONGODB_DATABASE: project

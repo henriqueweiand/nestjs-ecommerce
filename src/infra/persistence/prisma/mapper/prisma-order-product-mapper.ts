@@ -5,18 +5,28 @@ export class PrismaOrderProductMapper {
   static toDomain(entity: PrismaOrderProduct): OrderProduct {
     const model = new OrderProduct({
       id: entity.id,
-      productId: entity.productId,
+      product: entity.productId,
       orderId: entity.orderId,
       price: entity.price,
     });
     return model;
   }
 
+  static toPrisma(
+    orderProducts: OrderProduct,
+  ): Prisma.OrderProductUncheckedCreateInput {
+    return {
+      productId: orderProducts.product,
+      orderId: orderProducts.orderId,
+      price: orderProducts.price,
+    }
+  }
+
   static toPrismaCreateMany(
     orderProducts: OrderProduct[],
   ): Prisma.OrderProductCreateManyInput[] {
     return orderProducts.map((product) => ({
-      productId: product.productId,
+      productId: product.product,
       orderId: product.orderId,
       price: product.price,
     }));

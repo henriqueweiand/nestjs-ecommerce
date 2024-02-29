@@ -10,6 +10,13 @@ export class PrismaOrderProductRepository implements OrderProductRepository {
         private prisma: PrismaService,
     ) { }
 
+    async create(orderProduct: OrderProduct): Promise<OrderProduct> {
+        const data = PrismaOrderProductMapper.toPrisma(orderProduct);
+        const createdOrderProduct = await this.prisma.orderProduct.create({ data });
+
+        return PrismaOrderProductMapper.toDomain(createdOrderProduct);
+    }
+
     async createMany(orderProducts: OrderProduct[]): Promise<OrderProduct[]> {
         if (orderProducts.length === 0) {
             return [];
