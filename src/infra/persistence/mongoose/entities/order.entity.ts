@@ -1,19 +1,28 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
-import { OrderProduct } from './order-product.entity'
+import mongoose, { HydratedDocument } from 'mongoose';
+import { Type } from 'class-transformer';
+import { OrderProduct } from './order-product.entity';
+import { User } from './user.entity';
 
 export type OrderDocument = HydratedDocument<Order>;
 
 @Schema()
 export class Order {
-  @Prop({ type: String, ref: 'User' })
-  userId: string;
+  _id: mongoose.Schema.Types.ObjectId;
 
-  @Prop({ type: String, ref: 'Order' })
-  OrderProduct: OrderProduct[];
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: User.name, })
+  @Type(() => User)
+  user: User;
+
+  @Prop({
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: OrderProduct.name }],
+  })
+  orderProduct: OrderProduct[];
 
   @Prop()
   total: number;
 }
 
-export const OrderSchema = SchemaFactory.createForClass(Order);
+const OrderSchema = SchemaFactory.createForClass(Order);
+
+export { OrderSchema };

@@ -1,8 +1,10 @@
 import { Entity } from "@app/core/entities/entity";
+import { Order } from "./order";
 
 export interface UserProps {
-    id?: string
-    name: string
+    id?: string;
+    name: string;
+    orders?: Order[]
 }
 
 export class User extends Entity<UserProps> {
@@ -16,5 +18,13 @@ export class User extends Entity<UserProps> {
 
     get name(): string {
         return this.props.name;
+    }
+
+    get order(): string[] {
+        return this.order;
+    }
+
+    get currentState(): UserProps {
+        return this.props;
     }
 }

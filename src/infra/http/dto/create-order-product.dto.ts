@@ -9,7 +9,7 @@ export class CreateOrderProductDto {
     @ApiProperty()
     @IsString()
     @IsNotEmpty()
-    productId: string;
+    product: string;
 
     @ApiProperty()
     @IsNumber()

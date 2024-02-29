@@ -1,14 +1,20 @@
+import { OrderProductRepository } from '@app/application/ecommerce/ports/order-product.repositoy';
+import { OrderRepository } from '@app/application/ecommerce/ports/order.repositoy';
 import { ProductRepository } from '@app/application/ecommerce/ports/product.repositoy';
+import { UserRepository } from '@app/application/ecommerce/ports/user.repositoy';
 import { EnvModule, EnvService } from '@app/infra/env';
 import { Module } from '@nestjs/common';
 import { MongooseModule as MongooseModuleLib } from '@nestjs/mongoose';
+import { OrderProduct, OrderProductSchema } from './entities/order-product.entity';
+import { Order, OrderSchema } from './entities/order.entity';
 import { Product, ProductSchema } from './entities/product.entity';
-import { UserRepository } from '@app/application/ecommerce/ports/user.repositoy';
+import { User, UserSchema } from './entities/user.entity';
 
 // Non exported
+import { MongooseOrderProductRepository } from './repositories/mongoose-order-product.repositoy';
+import { MongooseOrderRepository } from './repositories/mongoose-order.repositoy';
 import { MongooseProductRepository } from './repositories/mongoose-product.repositoy';
 import { MongooseUserRepository } from './repositories/mongoose-user.repositoy';
-import { User, UserSchema } from './entities/user.entity';
 
 @Module({
     imports: [
@@ -20,8 +26,10 @@ import { User, UserSchema } from './entities/user.entity';
             inject: [EnvService],
         }),
         MongooseModuleLib.forFeature([
+            { name: User.name, schema: UserSchema },
             { name: Product.name, schema: ProductSchema },
-            { name: User.name, schema: UserSchema }
+            { name: Order.name, schema: OrderSchema },
+            { name: OrderProduct.name, schema: OrderProductSchema },
         ]),
     ],
     providers: [
@@ -33,7 +41,15 @@ import { User, UserSchema } from './entities/user.entity';
             provide: UserRepository,
             useClass: MongooseUserRepository
         },
+        {
+            provide: OrderRepository,
+            useClass: MongooseOrderRepository
+        },
+        {
+            provide: OrderProductRepository,
+            useClass: MongooseOrderProductRepository
+        },
     ],
-    exports: [ProductRepository, UserRepository],
+    exports: [ProductRepository, UserRepository, OrderRepository, OrderProductRepository],
 })
 export class MongooseModule { }

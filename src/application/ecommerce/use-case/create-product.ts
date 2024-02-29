@@ -4,7 +4,6 @@ import { ProductRepository } from '../ports/product.repositoy';
 
 interface CreateProductUseCaseCommand {
   title: string,
-  quantityAvailable: number,
   price: number
 }
 

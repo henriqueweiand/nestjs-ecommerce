@@ -7,8 +7,10 @@ import {
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { GetUserUseCase } from '@app/application/ecommerce/use-case/get-user';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('/user')
+@ApiTags('User')
 export class UserController {
     constructor(
         private createUserUseCase: CreateUserUseCase,
@@ -21,7 +23,7 @@ export class UserController {
         return response;
     }
 
-    @Post('create')
+    @Post('')
     create(@Body() createUserDto: CreateUserDto) {
         const response = this.createUserUseCase.execute(createUserDto);
         return response;

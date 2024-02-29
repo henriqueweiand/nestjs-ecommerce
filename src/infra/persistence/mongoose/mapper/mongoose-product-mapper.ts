@@ -1,10 +1,10 @@
 import { Product } from '@app/domain/ecommerce/product';
-import { OrderDocument } from "../entities/product.entity";
+import { Product as ProductDocument } from "../entities/product.entity";
 
 export class MongooseProductMapper {
-  static toDomain(entity: OrderDocument): Product {
+  static toDomain(entity: ProductDocument): Product {
     const model = new Product({
-      id: entity.id,
+      id: entity._id.toString(),
       title: entity.title,
       price: entity.price,
     });

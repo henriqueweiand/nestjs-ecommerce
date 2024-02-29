@@ -1,24 +1,22 @@
 import { OrderProduct } from '@app/domain/ecommerce/order-product';
-import { OrderProductDocument } from '../entities/order-product.entity';
+import { OrderProduct as OrderProductDocument } from '../entities/order-product.entity';
 
 export class MongooseOrderProductMapper {
   static toDomain(entity: OrderProductDocument): OrderProduct {
     const model = new OrderProduct({
-      id: entity.id,
-      productId: entity.productId,
-      orderId: entity.orderId,
+      id: entity._id.toString(),
+      product: entity.product.toString(),
       price: entity.price,
     });
     return model;
   }
 
-  static toMongooseCreateMany(
-    orderProducts: OrderProduct[],
-  ): any[] {
-    return orderProducts.map((product) => ({
-      productId: product.productId,
-      orderId: product.orderId,
-      price: product.price,
-    }));
+  static toMongoose(
+    orderProducts: OrderProduct,
+  ): any {
+    return {
+      price: orderProducts.price,
+      product: orderProducts.product,
+    }
   }
 }
