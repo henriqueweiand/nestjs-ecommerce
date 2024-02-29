@@ -1,6 +1,6 @@
 version: '3'
 services:
-  api-solid-pg:
+  postgres:
     image: bitnami/postgresql
     ports:
       - 5432:5432
@@ -8,3 +8,11 @@ services:
       - POSTGRESQL_USERNAME=docker
       - POSTGRESQL_PASSWORD=docker
       - POSTGRESQL_DATABASE=project
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGODB_DATABASE: project

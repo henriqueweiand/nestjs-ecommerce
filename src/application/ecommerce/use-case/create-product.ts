@@ -4,7 +4,6 @@ import { ProductRepository } from '../ports/product.repositoy';
 
 interface CreateProductUseCaseCommand {
   title: string,
-  quantityAvailable: number,
   price: number
 }
 
@@ -14,13 +13,11 @@ export class CreateProductUseCase {
 
   async execute({
     title,
-    quantityAvailable,
     price
   }: CreateProductUseCaseCommand): Promise<any> {
 
     const product = new Product({
       title,
-      quantityAvailable,
       price
     })
 

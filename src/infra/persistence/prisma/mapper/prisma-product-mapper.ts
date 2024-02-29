@@ -6,7 +6,6 @@ export class PrismaProductMapper {
     const model = new Product({
       id: entity.id,
       title: entity.title,
-      quantityAvailable: entity.quantityAvailable,
       price: entity.price,
     });
     return model;
@@ -15,7 +14,6 @@ export class PrismaProductMapper {
   static toPrisma(product: Product): Prisma.ProductUncheckedCreateInput {
     return {
       title: product.title,
-      quantityAvailable: product.quantityAvailable,
       price: product.price,
     }
   }

@@ -2,8 +2,8 @@ import { Entity } from "@app/core/entities/entity";
 
 export interface OrderProductProps {
     id?: string
-    productId: string
-    orderId: string
+    orderId?: string
+    product: string
     price: number
 }
 
@@ -16,8 +16,8 @@ export class OrderProduct extends Entity<OrderProductProps> {
         return this.props.id;
     }
 
-    get productId(): string {
-        return this.props.productId;
+    get product(): string {
+        return this.props.product;
     }
 
     get orderId(): string {
@@ -26,5 +26,9 @@ export class OrderProduct extends Entity<OrderProductProps> {
 
     get price(): number {
         return this.props.price;
+    }
+
+    get currentState(): OrderProductProps {
+        return this.props;
     }
 }

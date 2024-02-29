@@ -14,10 +14,5 @@ export class CreateProductDto {
     @ApiProperty()
     @IsNumber()
     @IsNotEmpty()
-    quantityAvailable: number;
-
-    @ApiProperty()
-    @IsNumber()
-    @IsNotEmpty()
     price: number;
 }
