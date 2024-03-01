@@ -2,7 +2,17 @@
 
 Example to exercise clean architecture with different databases + cache layer + DDD.
 
+## Running locally
+WIP
+
+## Solution Diagram
+WIP
+
+## API Documentation
+WIP
+
 ## To-do
+
 
 - [x] Product
 - [x] User
