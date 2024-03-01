@@ -1,12 +1,14 @@
-# NestJS ecommerce
+# NestJS e-commerce
 
-This is a simple example to exercise clean architecture
+Example to exercise clean architecture with different databases + cache layer + DDD.
 
 ## To-do
 
 - [x] Product
 - [x] User
 - [x] Order
-- [ ] Branch with MongoDB
+- [x] Add Mongo
+- [x] Add Postgres
+- [ ] Add way to switch database easly
 - [ ] Cache layer
 - [ ] Tests
