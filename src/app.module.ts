@@ -1,15 +1,18 @@
 import { Module } from '@nestjs/common';
 import { DevtoolsModule } from '@nestjs/devtools-integration';
-import { ProductModule } from './application/ecommerce/product.module';
-import { EnvModule } from './infra/env';
+import { EcommerceModule } from './application/ecommerce/ecommerce.module';
+import { PersistenceModule } from './infra/persistence/persistence.module';
 
 @Module({
   imports: [
     DevtoolsModule.register({
       http: process.env.NODE_ENV !== 'production',
     }),
-    EnvModule,
-    ProductModule,
+    PersistenceModule.register({
+      type: 'prisma',
+      global: true,
+    }),
+    EcommerceModule
   ],
 })
 export class AppModule { }

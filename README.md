@@ -7,6 +7,6 @@ This is a simple example to exercise clean architecture
 - [x] Product
 - [x] User
 - [x] Order
-- [ ] Branch with MongoDB
+- [x] Persistence module to switch between mongo em postgres
 - [ ] Cache layer
 - [ ] Tests

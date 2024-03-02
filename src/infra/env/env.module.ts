@@ -8,7 +8,7 @@ import { ConfigModule } from '@nestjs/config'
     ConfigModule.forRoot({
       envFilePath: process.env.NODE_ENV === 'test' ? '.env.example' : '.env',
       validate: (env) => envSchema.parse(env),
-      isGlobal: true,
+      isGlobal: false,
     }),
   ],
   providers: [EnvService],
