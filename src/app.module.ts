@@ -9,7 +9,7 @@ import { PersistenceModule } from './infra/persistence/persistence.module';
       http: process.env.NODE_ENV !== 'production',
     }),
     PersistenceModule.register({
-      type: 'prisma',
+      type: 'mongoose',
       global: true,
     }),
     EcommerceModule

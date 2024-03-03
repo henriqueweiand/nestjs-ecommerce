@@ -22,5 +22,5 @@ WIP
 - [x] Add Mongo
 - [x] Add Postgres
 - [x] Add way to switch database easly
-- [ ] Cache layer
+- [x] Cache layer
 - [ ] Tests
