@@ -2,9 +2,18 @@
 
 Example to exercise clean architecture with different databases + cache layer + DDD.
 
+[![Run E2E Tests](https://github.com/henriqueweiand/nestjs-ecommerce/actions/workflows/run-e2e-tests.yml/badge.svg)](https://github.com/henriqueweiand/nestjs-ecommerce/actions/workflows/run-e2e-tests.yml)
+[![Run Unit Tests](https://github.com/henriqueweiand/nestjs-ecommerce/actions/workflows/run-unit-tests.yml/badge.svg)](https://github.com/henriqueweiand/nestjs-ecommerce/actions/workflows/run-unit-tests.yml)
+
 ## Running locally
 
-WIP
+1. Instal the dependecies
+2. copy .env.example to .env'
+3. run `docker-compose up -d`, it will create a Mongo instance
+4. run `yarn start:dev`
+5. Access `http://localhost:3000/api`
+
+The default database is set Mongo, but it can be changed inside `app.module.ts`
 
 ## Solution Diagram
 
@@ -12,7 +21,9 @@ WIP
 
 ## API Documentation
 
-WIP
+Running the solution, access `http://localhost:3000/api`
+
+![Preview](https://github.com/henriqueweiand/nestjs-ecommerce/blob/master/assets/swagger.png)
 
 ## To-do
 
@@ -23,4 +34,6 @@ WIP
 - [x] Add Postgres
 - [x] Add way to switch database easly
 - [x] Cache layer
-- [ ] Tests
+- [x] A few Unit tests
+- [x] A few e2e tests
+- [ ] Stripe integration

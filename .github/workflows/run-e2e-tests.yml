@@ -1,0 +1,35 @@
+name: Run E2E Tests
+
+on: [push]
+
+jobs:
+  run-e2e-tests:
+    name: Run E2E Tests
+    runs-on: ubuntu-latest
+
+    services:
+      mongo:
+        image: mongo
+        ports:
+          - 27017:27017
+        env:
+          MONGODB_DATABASE: project
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+          path: node_modules
+
+      - name: Use Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 19.0.1
+
+      - run: npm i --force
+
+      - run: npm run test:e2e
