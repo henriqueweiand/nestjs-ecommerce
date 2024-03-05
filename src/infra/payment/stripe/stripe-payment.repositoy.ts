@@ -53,20 +53,38 @@ export class StripePaymentRepository implements PaymentRepository {
     return stripeSession.url || "";
   }
 
+  private extractStripeSignature(signatureHeader) {
+    const parts = signatureHeader.split(',');
+
+    const timestamp = parts.find(part => part.startsWith('t=')).split('=')[1];
+
+    const signatures = parts
+      .filter(part => part.startsWith('v'))
+      .map(part => {
+        const [version, signature] = part.split('=');
+        return { version, signature };
+      });
+
+    return { timestamp, signatures };
+  }
+
   private constructEvent({
     body,
     signature,
   }): Stripe.Event {
     let event: Stripe.Event;
 
+    const signatures = this.extractStripeSignature(signature);
+    console.log("signature", signatures);
     try {
       event = this.stripe.webhooks.constructEvent(
-        body,
-        signature,
+        JSON.stringify(body),
+        signatures.signatures[0].signature,
         this.envService.get("STRIPE_WEBHOOK_SECRET")
       );
     } catch (error) {
-      throw new Error("Webhook error");
+      // console.error(error);
+      throw new Error("Webhook error", error.message);
     }
 
     return event;
@@ -78,8 +96,8 @@ export class StripePaymentRepository implements PaymentRepository {
 
     if (event.type === "checkout.session.completed") {
       try {
-        const subscription = await this.stripe.subscriptions.retrieve(
-          session.subscription as string
+        const paymentIntentId = await this.stripe.paymentIntents.retrieve(
+          session.id
         );
 
         const orderId = session?.metadata?.orderId;
@@ -90,16 +108,16 @@ export class StripePaymentRepository implements PaymentRepository {
 
         const order = await this.orderRepository.findById(orderId);
 
-        if (order.status === "paid") {
-          throw new Error("Order already paid");
-        }
+        // if (order.status === "paid") {
+        //   throw new Error("Order already paid");
+        // }
 
         const updatedOrder = await this.orderRepository.update(
           orderId,
           new Order({
             ...order.currentState,
             status: order.status,
-            paymentId: session.payment_intent as string,
+            paymentId: paymentIntentId.id,
             paymentMethod: "stripe",
           })
         );
@@ -109,8 +127,7 @@ export class StripePaymentRepository implements PaymentRepository {
         console.error(error);
         throw new Error("Invalid event: subscription not found");
       }
-    } else {
-      throw new Error("Invalid event");
     }
+
   }
 }

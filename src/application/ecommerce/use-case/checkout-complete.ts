@@ -23,6 +23,12 @@ export class CheckoutCompleteUseCase {
       throw new Error('Invalid signature');
     }
 
+    // console.log('body', body);
+    // return {
+    //   signature,
+    //   body: JSON.stringify(body)
+    // }
+
     const payment = await this.paymentRepository.complete({
       signature,
       body
