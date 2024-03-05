@@ -60,4 +60,22 @@ export class MongooseOrderRepository implements OrderRepository {
 
         return MongooseOrderMapper.toDomain(savedOrder);
     }
+
+    async update(orderId: string, orderInput: Order): Promise<Order> {
+        const preparedData = MongooseOrderMapper.toMongoose(orderInput);
+
+        const order = await this.orderModel
+            .findOneAndUpdate(
+                {
+                    _id: orderId,
+                },
+                preparedData,
+                {
+                    new: true,
+                },
+            )
+            .exec();
+
+        return MongooseOrderMapper.toDomain(order);
+    }
 }

@@ -5,6 +5,7 @@ import { Module } from '@nestjs/common';
 @Module({
     imports: [
         CacheModule.registerAsync({
+            isGlobal: false,
             imports: [EnvModule],
             useFactory: async (configService: EnvService) => ({
                 ttl: configService.get('CACHE_TTL'),

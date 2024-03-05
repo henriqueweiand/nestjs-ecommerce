@@ -7,6 +7,9 @@ export class MongooseOrderMapper {
       id: entity._id.toString(),
       user: entity.user.toString(),
       total: entity.total,
+      status: entity.status,
+      paymentId: entity.paymentId,
+      paymentMethod: entity.paymentMethod,
     });
     return model;
   }
@@ -15,6 +18,9 @@ export class MongooseOrderMapper {
     return {
       total: order.total,
       user: order.user,
+      status: order.status,
+      paymentId: order?.paymentId,
+      paymentMethod: order?.paymentMethod,
     }
   }
 }
