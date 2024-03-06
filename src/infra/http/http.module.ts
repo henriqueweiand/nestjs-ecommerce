@@ -15,10 +15,11 @@ import { CheckoutController } from './checkout.controller';
 import { PaymentModule } from '../payment/payment.module';
 import { GetOrdersUseCase } from '@app/application/ecommerce/use-case/get-orders';
 import { CheckoutCompleteUseCase } from '@app/application/ecommerce/use-case/checkout-complete';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [PaymentModule, CacheManagerModule],
-  controllers: [ProductController, UserController, OrderController, CheckoutController],
+  controllers: [AppController, ProductController, UserController, OrderController, CheckoutController],
   providers: [CreateProductUseCase, GetProductUseCase, CreateUserUseCase, GetUserUseCase, GetOrderUseCase, GetOrdersUseCase, CreateOrderUseCase, CheckoutUrlUseCase, CheckoutCompleteUseCase],
   exports: [],
 })
