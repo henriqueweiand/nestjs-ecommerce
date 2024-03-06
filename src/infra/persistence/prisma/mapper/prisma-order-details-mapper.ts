@@ -10,7 +10,10 @@ export class PrismaOrderDetailsMapper {
       id: entity.id,
       user: entity.user,
       total: entity.total,
-      orderProduct: !!entity.orderProduct ? entity.orderProduct.map((item) => PrismaOrderProductMapper.toDomain(item)) : []
+      orderProduct: !!entity.orderProduct ? entity.orderProduct.map((item) => PrismaOrderProductMapper.toDomain(item)) : [],
+      status: entity.status,
+      paymentId: entity.paymentId,
+      paymentMethod: entity.paymentMethod,
     });
     return model;
   }

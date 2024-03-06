@@ -7,6 +7,8 @@ export class PrismaOrderMapper {
       id: entity.id,
       user: entity.user,
       total: entity.total,
+      paymentId: entity.paymentId,
+      paymentMethod: entity.paymentMethod
     });
     return model;
   }
@@ -16,6 +18,8 @@ export class PrismaOrderMapper {
       user: order.user,
       total: order.total,
       id: order.id,
+      paymentId: order?.paymentId,
+      paymentMethod: order?.paymentMethod
     }
   }
 }

@@ -1,4 +1,3 @@
-import { OrderProductRepository } from "@app/application/ecommerce/ports/order-product.repositoy";
 import { OrderRepository } from "@app/application/ecommerce/ports/order.repositoy";
 import { Order } from "@app/domain/ecommerce/order";
 import { Injectable } from "@nestjs/common";
@@ -10,7 +9,6 @@ import { PrismaService } from "../prisma.service";
 export class PrismaOrderRepository implements OrderRepository {
     constructor(
         private prisma: PrismaService,
-        private orderProductRepository: OrderProductRepository
     ) { }
 
     async findMany(): Promise<Order[]> {
@@ -54,6 +52,19 @@ export class PrismaOrderRepository implements OrderRepository {
             include: {
                 orderProduct: true
             }
+        });
+
+        return PrismaOrderMapper.toDomain(order);
+    }
+
+    async update(orderId: string, orderInput: Order): Promise<Order> {
+        const data = PrismaOrderMapper.toPrisma(orderInput);
+
+        const order = await this.prisma.order.update({
+            where: {
+                id: orderId
+            },
+            data,
         });
 
         return PrismaOrderMapper.toDomain(order);

@@ -5,6 +5,11 @@ Example to exercise clean architecture with different databases + cache layer + 
 [![Run E2E Tests](https://github.com/henriqueweiand/nestjs-ecommerce/actions/workflows/run-e2e-tests.yml/badge.svg)](https://github.com/henriqueweiand/nestjs-ecommerce/actions/workflows/run-e2e-tests.yml)
 [![Run Unit Tests](https://github.com/henriqueweiand/nestjs-ecommerce/actions/workflows/run-unit-tests.yml/badge.svg)](https://github.com/henriqueweiand/nestjs-ecommerce/actions/workflows/run-unit-tests.yml)
 
+## Pre requirements
+
+- To use the full project, you will need to have a Stripe dev account;
+- Mongo or Postgres dabatase;
+
 ## Running locally
 
 1. Instal the dependecies
@@ -14,10 +19,6 @@ Example to exercise clean architecture with different databases + cache layer + 
 5. Access `http://localhost:3000/api`
 
 The default database is set Mongo, but it can be changed inside `app.module.ts`
-
-## Solution Diagram
-
-WIP
 
 ## API Documentation
 

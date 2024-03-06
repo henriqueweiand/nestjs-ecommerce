@@ -4,6 +4,19 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+enum OrderStatus {
+  paid     @map("paid")
+  open     @map("open")
+  canceled @map("canceled")
+}
+
+enum PaymentMethod {
+  stripe @map("stripe")
+  paddle @map("paddle")
+  paypal @map("paypal")
+  other  @map("other")
+}
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -32,9 +45,12 @@ model User {
 }
 
 model Order {
-  id    String @id @default(uuid())
-  user  String
-  total Int
+  id            String         @id @default(uuid())
+  user          String
+  status        OrderStatus    @default(open)
+  paymentMethod PaymentMethod?
+  paymentId     String?
+  total         Int
 
   User         User           @relation(fields: [user], references: [id])
   orderProduct OrderProduct[]
