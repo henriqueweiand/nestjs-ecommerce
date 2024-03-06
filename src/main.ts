@@ -7,6 +7,7 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     snapshot: true,
+    rawBody: true,
   })
 
   const configService = app.get(EnvService)

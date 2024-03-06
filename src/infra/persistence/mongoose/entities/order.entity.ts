@@ -21,6 +21,15 @@ export class Order {
 
   @Prop()
   total: number;
+
+  @Prop({ default: 'open' })
+  status: 'paid' | 'open' | 'canceled';
+
+  @Prop({ index: true })
+  paymentId?: string;
+
+  @Prop({ index: true })
+  paymentMethod?: 'stripe' | 'paddle' | 'paypal' | 'other';
 }
 
 const OrderSchema = SchemaFactory.createForClass(Order);

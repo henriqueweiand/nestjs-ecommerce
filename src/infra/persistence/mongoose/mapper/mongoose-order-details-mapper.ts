@@ -12,6 +12,9 @@ export class MongooseOrderDetailsMapper {
       user: entity.user.toString(),
       total: entity.total,
       orderProduct: !!entity.orderProduct ? entity.orderProduct.map((order) => MongooseOrderProductMapper.toDomain(order)) : [],
+      status: entity.status,
+      paymentId: entity.paymentId,
+      paymentMethod: entity.paymentMethod,
     });
     return model;
   }
