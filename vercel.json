@@ -3,7 +3,7 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "main.js",
+            "dest": "main.ts",
             "methods": [
                 "GET",
                 "POST",
