@@ -1,6 +1,12 @@
 {
     "version": 2,
-    "buildCommand": "nest build",
+    "buildCommand": "yarn build",
+    "builds": [
+        {
+            "src": "main.js",
+            "use": "@vercel/node"
+        }
+    ],
     "routes": [
         {
             "src": "/(.*)",
