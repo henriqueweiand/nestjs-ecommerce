@@ -8,8 +8,8 @@
     ],
     "routes": [
         {
-            "source": "/(.*)",
-            "destination": "dist/main.js",
+            "src": "/(.*)",
+            "dest": "dist/main.js",
             "methods": [
                 "GET",
                 "POST",
