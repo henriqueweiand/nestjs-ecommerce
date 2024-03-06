@@ -2,19 +2,14 @@
     "version": 2,
     "builds": [
         {
-            "src": "main.js",
-            "use": "@vercel/node",
-            "config": {
-                "includeFiles": [
-                    "dist/**"
-                ]
-            }
+            "src": "src/main.ts",
+            "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "main.js",
+            "dest": "src/main.ts",
             "methods": [
                 "GET",
                 "POST",
