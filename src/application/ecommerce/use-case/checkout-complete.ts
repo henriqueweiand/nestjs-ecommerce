@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, RawBodyRequest } from '@nestjs/common';
 import { Request } from 'express';
 import { PaymentRepository } from '../ports/payment.repositoy';
+import { Order } from '@app/domain/ecommerce/order';
 
 type CheckoutCompleteUseCaseCommand = {
   headers: Request['headers'],
-  body: Request['body']
+  req: RawBodyRequest<Request>
 }
 
 @Injectable()
@@ -16,24 +17,18 @@ export class CheckoutCompleteUseCase {
   /*
     * This method is not abstracted, but it is a good example of how to handle webhooks in a controller.
     */
-  async execute({ headers, body }: CheckoutCompleteUseCaseCommand): Promise<any> {
+  async execute({ headers, req }: CheckoutCompleteUseCaseCommand): Promise<Order> {
     const signature = headers['stripe-signature'];
 
     if (!signature) {
       throw new Error('Invalid signature');
     }
 
-    // console.log('body', body);
-    // return {
-    //   signature,
-    //   body: JSON.stringify(body)
-    // }
-
-    const payment = await this.paymentRepository.complete({
+    const order = await this.paymentRepository.complete({
       signature,
-      body
+      req: req.rawBody,
     });
 
-    return payment;
+    return order;
   }
 }

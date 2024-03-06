@@ -36,4 +36,4 @@ Running the solution, access `http://localhost:3000/api`
 - [x] Cache layer
 - [x] A few Unit tests
 - [x] A few e2e tests
-- [ ] Stripe integration
+- [x] Stripe integration

@@ -1,18 +1,19 @@
 import { CheckoutUrlUseCase } from '@app/application/ecommerce/use-case/checkout-url';
 import { CacheKey } from '@nestjs/cache-manager';
 import {
-    Body,
     Controller,
     Get,
     Headers,
     Param,
     Post,
+    RawBodyRequest,
+    Req,
     UseInterceptors
 } from '@nestjs/common';
 import { Request } from 'express';
+import { CheckoutCompleteUseCase } from '@app/application/ecommerce/use-case/checkout-complete';
 import { ApiTags } from '@nestjs/swagger';
 import { HttpCacheInterceptor } from '../persistence/cache/interceptor/http-cache.interceptor';
-import { CheckoutCompleteUseCase } from '@app/application/ecommerce/use-case/checkout-complete';
 
 @Controller('/checkout')
 @ApiTags('Checkout')
@@ -33,11 +34,11 @@ export class CheckoutController {
     @Post('completed')
     checkoutComplete(
         @Headers() requestHeaders: Request['headers'],
-        @Body() requestBody: Request['body'],
+        @Req() req: RawBodyRequest<Request>
     ) {
         const response = this.checkoutCompleteUseCase.execute({
             headers: requestHeaders,
-            body: requestBody
+            req: req
         });
         return response;
     }
