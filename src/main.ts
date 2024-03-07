@@ -16,9 +16,9 @@ async function bootstrap() {
   function getSwaggerServerUrl() {
     switch (process.env.NODE_ENV) {
       case 'production':
-        return 'https://nestjs-ecommerce-alpha.vercel.app/api';
+        return 'https://nestjs-ecommerce-alpha.vercel.app';
       default:
-        return `http://localhost:${port}/api`;
+        return `http://localhost:${port}`;
     }
   }
 
