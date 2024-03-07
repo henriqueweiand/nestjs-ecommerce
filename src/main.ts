@@ -5,9 +5,14 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
+  const app = await NestFactory.create(AppModule, {
+    snapshot: true,
+    rawBody: true,
+  })
+
   const configService = app.get(EnvService)
   const port = configService.get('PORT')
-  
+
   function getSwaggerServerUrl() {
     switch (process.env.NODE_ENV) {
       case 'production':
@@ -16,11 +21,6 @@ async function bootstrap() {
         return `http://localhost:${port}/api`;
     }
   }
-  
-  const app = await NestFactory.create(AppModule, {
-    snapshot: true,
-    rawBody: true,
-  })
 
   app.useGlobalPipes(new ValidationPipe({
     transform: true,
