@@ -5,9 +5,9 @@ import { PersistenceModule } from './infra/persistence/persistence.module';
 
 @Module({
   imports: [
-    DevtoolsModule.register({
-      http: process.env.NODE_ENV !== 'production',
-    }),
+    // DevtoolsModule.register({
+    //   http: process.env.NODE_ENV !== 'production',
+    // }),
     PersistenceModule.register({
       type: 'mongoose',
       global: true,
