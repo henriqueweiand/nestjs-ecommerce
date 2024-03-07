@@ -3,14 +3,14 @@
     "buildCommand": "yarn build",
     "builds": [
         {
-            "src": "src/main.ts",
+            "src": "main.js",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "src/main.ts",
+            "dest": "main.js",
             "methods": [
                 "GET",
                 "POST",
