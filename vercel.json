@@ -1,6 +1,5 @@
 {
     "version": 2,
-    "buildCommand": "yarn build",
     "builds": [
         {
             "src": "src/main.ts",
