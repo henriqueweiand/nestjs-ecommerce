@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../src/core/entities/entity.ts"],"sourcesContent":["\nexport abstract class Entity<Props> {\n  protected props: Props\n\n  protected constructor(props: Props) {\n    this.props = props\n  }\n}\n"],"names":["Entity","props"],"mappings":";;;;+BACsBA;;;eAAAA;;;AAAf,IAAA,AAAeA,SAAf,MAAeA;IAGpB,YAAsBC,KAAY,CAAE;QAClC,IAAI,CAACA,KAAK,GAAGA;IACf;AACF"}
