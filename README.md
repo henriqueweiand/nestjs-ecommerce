@@ -5,6 +5,8 @@ Example to exercise clean architecture with different databases + cache layer + 
 [![Run E2E Tests](https://github.com/henriqueweiand/nestjs-ecommerce/actions/workflows/run-e2e-tests.yml/badge.svg)](https://github.com/henriqueweiand/nestjs-ecommerce/actions/workflows/run-e2e-tests.yml)
 [![Run Unit Tests](https://github.com/henriqueweiand/nestjs-ecommerce/actions/workflows/run-unit-tests.yml/badge.svg)](https://github.com/henriqueweiand/nestjs-ecommerce/actions/workflows/run-unit-tests.yml)
 
+blog post about the project -> https://medium.com/nestjs-ninja/mastering-nestjs-unleashing-the-power-of-clean-architecture-and-ddd-in-e-commerce-development-97850131fd87
+
 ## Pre requirements
 
 - To use the full project, you will need to have a Stripe dev account;
